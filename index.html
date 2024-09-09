@@ -14,19 +14,22 @@
 
     <form>
 
-        <div class="columns" id="coluna1">
-            <span class="textSpans" contenteditable="true" id="inputRazaoSocial"></span>
-            <span class="textSpans" contenteditable="true" id="inputObservacao"></span>
-        </div>
+        <div class="columns" id="boxEntrada">
 
-        <div class="columns" id="coluna2">
-            <input type="date">
-            <input type="tel">
-        </div>
+            <input type="text" class="textInputs" id="inputRazaoSocial" placeholder="Razão Social">
+            <input type="text" class="textInputs" id="inputObservacao" placeholder="Observações">
+            <input type="text" class="textInputs" id="inputCnpj" placeholder="CNPJ">
+            <input type="tel"  class="textInputs" id="inputTelefone" placeholder="Telefone de Contato">
+            <input type="date" class="textInputs" id="inputData">
 
-        <div id="boxLista">
-            <ol id="listaContatos"></ol>
+            <button id="insereContato" class="botoes" type="button">Inserir Contato</button>
+
+            <div id="boxLista">
+                <ol id="listaContatos"></ol>
+            </div>
+
         </div>
+        
     </form>
 
     <footer>
