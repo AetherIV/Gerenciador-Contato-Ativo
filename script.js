@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const inputObservacao = document.getElementById("inputObservacao");
     const inputCnpj = document.getElementById("inputCnpj");
     const inputTelefone = document.getElementById("inputTelefone");
+    const inputData = document.getElementById("inputData");
 
     const insereContato = document.getElementById("insereContato");
 
@@ -16,22 +17,43 @@ document.addEventListener("DOMContentLoaded", () => {
 
     insereContato.addEventListener('click', function () {
 
-        arrayArmazenamento = [`RAZÃO SOCIAL: ${inputRazaoSocial.value}\nOBSERVAÇÕES: ${inputObservacao.value}\nCNPJ: ${inputCnpj.value}\nTELEFONES: ${inputTelefone.value}`];
-        const contato = arrayArmazenamento.join(" ")
-
-        if (editIndex !== null) {
-            atualizarElemento(contato);
-        } else {
-            criarElementoLista(contato);
-            salvarElemento(contato);
+        if (inputRazaoSocial.value == "") {
+            criarNotif("ERRO", "Informe a razão social do cliente!");
+            return;
         }
+        else if (inputCnpj.value == "") {
+            criarNotif("ERRO", "Informe o CNPJ do cliente!");
+            return;
+        }
+        else if (inputTelefone.value == "") {
+            criarNotif("ERRO", "Informe o número de telefone do cliente!");
+            return;
+        }
+        else if (inputData.value == "") {
+            criarNotif("ERRO", "Informe a data de contato!");
+            return;
+        }
+        else {
 
-        inputRazaoSocial.value = '';
-        inputObservacao.value = '';
-        inputCnpj.value = '';
-        inputTelefone.value = '';
+            arrayArmazenamento = [inputRazaoSocial.value, inputObservacao.value, inputCnpj.value, inputTelefone.value, inputData.value]
+            const contato = arrayArmazenamento.join("\n\n")
 
-        editIndex = null;
+            if (editIndex !== null) {
+                atualizarElemento(contato);
+            } else {
+                criarElementoLista(contato);
+                salvarElemento(contato);
+            }
+
+            inputRazaoSocial.value = '';
+            inputObservacao.value = '';
+            inputCnpj.value = '';
+            inputTelefone.value = '';
+
+            editIndex = null;
+
+            criarNotif("SUCESSO", "Contato Inserido!")
+        }
     });
 
     function criarElementoLista(contato, index) {
@@ -71,7 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
         contatos.push(contato);
         localStorage.setItem('contatos', JSON.stringify(contatos));
 
-        reloadList();
+        recarregarLista();
     }
 
     function atualizarElemento(contato) {
@@ -80,7 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
         contatos[editIndex] = contato;
         localStorage.setItem('contatos', JSON.stringify(contatos));
 
-        reloadList();
+        recarregarLista();
         insereContato.textContent = 'Inserir Contato'
     }
 
@@ -97,19 +119,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function removerElemento(index) {
         let contatos = JSON.parse(localStorage.getItem('contatos')) || [];
-        
+
         contatos.splice(index, 1);
         localStorage.setItem('contatos', JSON.stringify(contatos));
 
         listaContatos.style.display = 'none';
-        reloadList();
+        recarregarLista();
     }
 
     function carregarElemento() {
-        reloadList();
+        recarregarLista();
     }
 
-    function reloadList() {
+    function recarregarLista() {
         listaContatos.innerHTML = '';
 
         let contatos = JSON.parse(localStorage.getItem('contatos')) || [];
@@ -117,5 +139,37 @@ document.addEventListener("DOMContentLoaded", () => {
         contatos.forEach((contato, index) => {
             criarElementoLista(contato, index);
         });
+    }
+
+    function criarNotif(tipo, texto) {
+
+        var notif = document.getElementById("notif");
+
+        if (!notif) {
+
+            console.log("teste");
+
+            notif = document.createElement("div");
+            notif.classList.add(tipo.toLowerCase());
+            
+            notif.textContent = texto;
+            notif.classList.add("slideIn")
+            notif.id = "notif";
+
+            setTimeout(() => {
+                notif.classList.remove("slideIn");
+                notif.classList.add("slideOut");
+            }, 5000)
+
+            setTimeout(() => {
+                document.body.removeChild(notif);
+            }, 6000)
+
+            document.body.appendChild(notif);
+        }
+        else {
+            return
+        }
+
     }
 });
