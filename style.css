@@ -27,15 +27,11 @@ header{
     padding: 5px;
     background-color: var(--accent-color);
     color: var(--text-color);
-    color: var(--text-color);
     grid-column: 1 / 3;
     grid-row: 1 / 2;
 }
 
 form{
-    display: flex;
-    align-items: center;
-    justify-content: center;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -49,12 +45,8 @@ footer{
     display: flex;
     align-items: center;
     justify-content: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     text-align: center;
     background-color: var(--accent-color);
-    color: var(--text-color);
     color: var(--text-color);
     height: 5vh;
     padding: 5px;
@@ -64,12 +56,7 @@ footer{
 
 #boxEntrada{
     background-color: var(--accent-color);
-#boxEntrada{
-    background-color: var(--accent-color);
     padding: 10px;
-    border-radius: 10px;
-    border: 2px outset;
-    margin-top: 10px;
     border-radius: 10px;
     border: 2px outset;
     margin-top: 10px;
@@ -81,38 +68,13 @@ footer{
     padding: 5px;
     height: fit-content;
     width: 30vw;
-    height: fit-content;
-    width: 30vw;
 }
 
 #inputObservacao{
     border-radius: 10px;
     padding: 5px;
     height: fit-content;
-    border-radius: 10px;
-    padding: 5px;
-    height: fit-content;
     width: 50vw;
-}
-
-#inputCnpj{
-    margin-top: 10px;
-    border-radius: 10px;
-    padding: 5px;
-    height: fit-content;
-    width: 10vw;
-}
-
-#inputTelefone{
-    margin-top: 10px;
-    border-radius: 10px;
-    padding: 5px;
-    height: fit-content;
-    width: 10vw;
-}
-
-#inputData{
-    margin-top: 10px;
 }
 
 #inputCnpj{
@@ -237,4 +199,4 @@ footer{
 .sucesso{
     background-color: var(--secondary-color);
     color: var(--text-color);
-}}
+}
